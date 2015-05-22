@@ -1,0 +1,28 @@
+* Final Project Technical Design
+** Messages
+*** Start
+Includes the input program as an S-expression.
+
+Response is the tex for the input formula annotated with indexed
+locations, as well as an error graph, possibly multiple, and a list of
+x-coordinate ranges with location indexes cooresponding to highlighted
+regions on the graph, as well as a session id for keeping track of
+future messages.
+*** Select Location
+Includes the given session id and a location index.
+
+Response is a list of "calts," where each calt is: a list of
+rule-program pairs (programs are texified), at most two, where if
+there are two the second rule must be "simplify," as well as the error
+graph(s) for that new calt.
+*** Select Children
+Includes the given session id and a list of calt indices, based on the
+order in which they were received.
+
+Response is a combination graph.
+*** Select Next
+Includes an alt index (based on the alts that have been accepted).
+
+Response is the formula re-texified and annotated with new locations,
+and error graph(s), and a list of x-coordinate ranges with location
+indices. Go to: Select Location.

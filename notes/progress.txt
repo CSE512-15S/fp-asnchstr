@@ -1,0 +1,21 @@
+Literature Review
+=================
+
+As far as I can tell, the techniques I'm presenting are novel, as they
+are pretty specific to the type of tool which I am creating an
+interface for. The paper outlining the Herbie tool is central to the
+techniques, and can be found at
+http://herbie.uwplse.org/pldi15-herbie.pdf .
+
+Project Plan
+============
+
+My plan is to break the project into three smaller chunks. First, I
+will get a rough version of the interface going that will be able to
+present what is shown on the slides in an unpolished manner using
+dummy data. Then, I will set up the mechanisms through which the
+interface will communicate with the existing Herbie server which my
+collegue is developing. Finally, as much as time permits I will
+generalize the interface to include taylor series as well as rewrites,
+to function properly on all expressions, and generally polish the
+interface.

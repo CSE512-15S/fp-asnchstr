@@ -1,0 +1,9 @@
+For my final project, I want to create a web interface for my research
+tool, Herbie. The basic idea is, a user can enter an expression, and
+that expression becomes an alternative that the user can visually see
+represented abstractly. Next, the improve loop allows the user to
+select an alternative, expand it to be fully shown, call localize to
+have the error-prone nodes highlighted, select any node or all nodes
+and either rewrite or generate series to attempt to fix that error,
+and when done, combine all alts to create a final combination. The
+user can also revert steps, and easily explore the space.

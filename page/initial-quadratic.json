@@ -1,0 +1,21 @@
+{
+    "formula": "\\frac{\\left( - b \\right) \\class{location}{\\cssId{0}{\\color{red}{\\enclose{circle}{-}}}} \\sqrt{b^{\\class{location}{\\cssId{1}{\\color{red}{\\enclose{circle}{2}}}}} - 4ac}}{2a}",
+    "error_graph": "quad-graph-b.png",
+    "sessionId": 0,
+    "loc_ranges": [
+        {
+            "start":0.6,
+            "end":0.8,
+            "locid":0
+        },
+        {
+            "start": 0,
+            "end": 0.2,
+            "locid":1
+        },
+        {
+            "start": 0.8,
+            "end": 1,
+            "locid":1
+        }]
+}

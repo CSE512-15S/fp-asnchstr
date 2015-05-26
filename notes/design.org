@@ -11,10 +11,11 @@ future messages.
 *** Select Location
 Includes the given session id and a location index.
 
-Response is a list of "calts," where each calt is: a list of
-rule-program pairs (programs are texified), at most two, where if
-there are two the second rule must be "simplify," as well as the error
-graph(s) for that new calt.
+Response is two things: the formula from the last stage with only the
+relevant location selected, and a list of "calts," where each calt is:
+a list of rule-program pairs (programs are texified), at most two,
+where if there are two the second rule must be "simplify," as well as
+the error graph(s) for that new calt.
 *** Select Children
 Includes the given session id and a list of calt indices, based on the
 order in which they were received.

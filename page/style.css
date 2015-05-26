@@ -1,17 +1,43 @@
 body {
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
     margin-top: 100px;
 }
 
-.bodybox {
-    margin: 0 auto;
-}
 .formula {
     text-align: center;
+}
+.selectedFormulaBox {
+    float: left;
 }
 img {
     width:100%;
     max-height:100%;
     height: auto;
+}
+.caltdiv{
+    display: inline-block;
+    *display: inline;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 0;
+    margin-bottom: auto;
+    vertical-align: top;
+    border-width: 10px;
+    border-color: green;
+}
+.stepdiv{
+    verticle-align: top;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 0;
+    margin-bottom: auto;
+    width: 150px;
+}
+.calt_graph{
+    position: absolute;
+    bottom: 0;
+    vertical-align: bottom;
+    width: 190px;
+    height: 100px;
 }

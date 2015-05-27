@@ -1,0 +1,16 @@
+{
+    "combo_graph":"quad-after.png",
+    "candidates":
+    [
+        {
+            "id":0,
+            "formula": "\\frac{\\left( - b \\right) - \\sqrt{b^2 - 4ac}}{2a}",
+            "graph": "quad-graph-b.png"
+        },
+        {
+            "id":1,
+            "formula": "\\frac{2c}{-b + \\sqrt{b^2-4ac}}",
+            "graph": "calt2.png"
+        }
+    ]
+}

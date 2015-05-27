@@ -20,7 +20,9 @@ the error graph(s) for that new calt.
 Includes the given session id and a list of calt indices, based on the
 order in which they were received.
 
-Response is a combination graph.
+Response is a combination graph, and a list of alts, where each alt is
+a formula, and a graph including that alts error and the combination
+error.
 *** Select Next
 Includes an alt index (based on the alts that have been accepted).
 

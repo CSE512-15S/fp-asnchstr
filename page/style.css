@@ -10,6 +10,9 @@ body {
 .selectedFormulaBox {
     float: left;
 }
+.instr {
+    text-align: center;
+}
 img {
     width:100%;
     max-height:100%;
@@ -18,26 +21,81 @@ img {
 .caltdiv{
     display: inline-block;
     *display: inline;
-    margin-left: 20px;
-    margin-right: 20px;
     margin-top: 0;
     margin-bottom: auto;
     vertical-align: top;
-    border-width: 10px;
+    border-width: 15px 10px 15px 10px;
+    border-style: solid;
     border-color: green;
+    position: relative;
+    width: 250px;
 }
 .stepdiv{
-    verticle-align: top;
+    vertical-align: top;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 0;
     margin-bottom: auto;
-    width: 150px;
+    width: 210px;
 }
 .calt_graph{
     position: absolute;
-    bottom: 0;
+    bottom: 15px;
     vertical-align: bottom;
-    width: 190px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 230px;
     height: 100px;
+}
+.calt_step{
+    text-align: center;
+}
+.selectCalt{
+    bottom: 0;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    width: 100%;
+    position: absolute;
+    vertical-align: bottom;
+}
+.finalize_box{
+    text-align: center;
+    margin: 0 auto;
+}
+.combo_box{
+    width: 400px;
+    height: auto;
+    border: 5px solid green;
+    margin: 0 auto;
+}
+.combo_graph{
+    margin: 10px;
+    width: 380px;
+}
+.candidates_div{
+    width: 100%;
+    text-align: center;
+}
+.candidate_box{
+    width: 230px;
+    height: 250px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+}
+.candidate_graph{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.combo_label{
+    font-weight: bold;
+    text-align: center;
+}
+.select_alt_box{
+    text-align: center;
+    margin: 0 auto;
 }

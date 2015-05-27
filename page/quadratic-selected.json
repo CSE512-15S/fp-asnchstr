@@ -7,7 +7,8 @@
                     "rule": "a - b \\to \\log{\\frac{e^a}{e^b}}",
                     "prog": "\\frac{\\log{\\frac{e^{-b}}{e^{\\sqrt{b^2 - 4ac}}}}}{2a}"
                 }],
-            "graph": "calt1.png"
+            "graph": "calt1.png",
+            "id":0
         },
         {
             "steps": [
@@ -19,7 +20,8 @@
                     "rule": "simplify",
                     "prog": "\\frac{2c}{-b + \\sqrt{b^2-4ac}}"
                 }],
-            "graph": "calt2.png"
+            "graph": "calt2.png",
+            "id":1
         },
         {
             "steps": [
@@ -27,7 +29,8 @@
                     "rule": "a \\to 1 * a",
                     "prog": "\\frac{1*(-b - \\sqrt{b^2-4ac})}{2a}"
                 }],
-            "graph": "quad-graph-b.png"
+            "graph": "quad-graph-b.png",
+            "id":2
         }
     ]
 }

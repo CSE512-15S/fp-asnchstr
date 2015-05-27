@@ -12,7 +12,6 @@ loc_colors = ["blue", "orange", "green", "purple"];
 
 
 // Some global state useful to keep all the phases in sync.
-sessionId = 0;
 selected_loc = -1;
 highlighted_loc = -1;
 ranges = -1;
@@ -21,7 +20,6 @@ selected_calts = d3.set();
 // Load the initial json and start rendering when it finishes loading.
 d3.json("initial-quadratic.json", function(error, data){
     if (error) return console.warn(error);
-    sessionId = data.sessionId;
     global_data = data;
     render_chosen_formula(data);
 });
@@ -356,7 +354,6 @@ function select_next(cand_id){
             if (i == 0){
                 d3.json("initial-quadratic.json", function(error, data){
                     if (error) return console.warn(error);
-                    sessionId = data.sessionId;
                     global_data = data;
                     render_chosen_formula(data);
                 });

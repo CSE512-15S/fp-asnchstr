@@ -1,5 +1,5 @@
 {
-    "selectedFormula":"\\frac{\\left( - b \\right) \\class{selectedLocation}{\\color{red}{\\enclose{circle}{-}}} \\sqrt{b^2 - 4ac}}{2a}",
+    "selected_formula":"\\frac{\\left( - b \\right) \\class{selectedLocation}{\\color{red}{\\enclose{circle}{-}}} \\sqrt{b^2 - 4ac}}{2a}",
     "calts": [
         {
             "steps": [

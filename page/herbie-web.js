@@ -176,7 +176,7 @@ function location_selected(data){
     // version from the server that only highlights the selected
     // location.
     d3.select(".formula")
-        .text("$$"+data.selectedFormula+"$$");
+        .text("$$"+data.selected_formula+"$$");
     d3.select(".selectedFormulaBox")
         .classed("phase2", true);
     d3.select("body").append("h3")

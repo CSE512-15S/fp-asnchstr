@@ -17,8 +17,10 @@ highlighted_loc = -1;
 ranges = -1;
 selected_calts = d3.set();
 
+init_json_path = d3.select(".placeholder").attr("data-json");
+
 // Load the initial json and start rendering when it finishes loading.
-d3.json("initial-quadratic.json", function(error, data){
+d3.json(init_json_path, function(error, data){
     if (error) return console.warn(error);
     global_data = data;
     render_chosen_formula(data);

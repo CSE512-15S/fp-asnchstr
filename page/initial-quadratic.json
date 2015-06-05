@@ -1,5 +1,5 @@
 {
-    "formula": "\\frac{\\left( - b \\right) \\class{location}{\\cssId{0}{\\color{red}{\\enclose{circle}{-}}}} \\sqrt{b^{\\class{location}{\\cssId{1}{\\color{red}{\\enclose{circle}{2}}}}} - 4ac}}{2a}",
+    "formula": "\\frac{\\left( - b \\right) \\class{location}{\\cssId{0}{\\color{red}{\\enclose{circle}{-}}}} \\class{location}{\\cssId{1}{\\color{red}{\\enclose{circle}{\\sqrt{\\color{black}{b^{2} \\class{location}{\\cssId{2}{\\color{red}{\\enclose{circle}{-}}}} 4ac}}}}}}}{2a}",
     "error_graph": "quad-graph-b.png",
     "sessionId": 0,
     "loc_ranges": [

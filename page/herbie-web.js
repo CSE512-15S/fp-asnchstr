@@ -331,7 +331,7 @@ function children_selected(data){
     comboBox.append("p").text("Current Combination")
         .attr("class", "combo_label");
     comboBox.append("img")
-        .attr("class", "combo_graph")
+        .attr("class", "combo_graph graph")
         .attr("src", data.combo_graph);
 
     // Create a box to hold all the candidates
@@ -366,7 +366,7 @@ function children_selected(data){
         });
     // Add the graph for each candidate.
     candidateBoxes.append("img")
-        .attr("class", "candidate_graph")
+        .attr("class", "candidate_graph graph")
         .attr("src", function (d, i) { return d.graph; });
 
     // Make everything invisible, and then slowly fade it in.

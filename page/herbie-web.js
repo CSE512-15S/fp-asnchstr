@@ -27,6 +27,8 @@ d3.json("initial-quadratic.json", function(error, data){
 // Renders the currently selected formula with it's locations and
 // ranges of error.
 function render_chosen_formula(data){
+    // Reset the loc to be considered "unselected"
+    selected_loc = -1;
     // Create a div to contain the selected formula and it's graph.
     var sfbox = d3.select("body").append("div")
         .classed("selectedFormulaBox", true)
@@ -77,18 +79,56 @@ function render_chosen_formula(data){
 }
 
 function add_loc_links(){
-    // Select all the parts of the formula marked as locations of
-    // error.
+    // Place a box over the whole formula so that we can capture click events and route them properly.
+    var formulaRect = d3.select(".formula").node().getBoundingClientRect();
+    var clickdiv = d3.select(".selectedFormulaBox")
+        .append("div")
+        .attr("class", "clickdiv")
+        .style("background", "transparent")
+        .style("position", "fixed")
+        .style("width", formulaRect.width + "px")
+        .style("height", formulaRect.height + "px")
+        .style("left", formulaRect.x + "px")
+        .style("top", formulaRect.y + "px");
+    clickdiv.on('click', dispatch_location)
+        .on('mousemove', update_highlights)
+        .on('mouseout', function () {unhighlight_location(highlighted_loc);});
+}
+// Convert absolute page coordinates to the location which best fits
+// them, returning negative one if there is no matching location. If
+// multiple locations match, returns the one with the smallest total
+// area.
+function pos_to_loc(coordinates){
     var locations = d3.selectAll(".location");
-    // Give them an onclick function that selects them based on their
-    // loc id, stored in the cssId field.
-    locations.each(function(d, i) {
-        var locIndex = d3.select(this).attr("id");
-        d3.select(this)
-            .on('click', function () {select_location(locIndex); })
-            .on('mouseover', function () {highlight_location(locIndex); })
-            .on('mouseout', function () {unhighlight_location(locIndex); });
+    var smallestArea = Infinity;
+    var locFound = -1;
+    locations.each(function (d){
+        locRect = d3.select(this).node().getBoundingClientRect();
+        if (coordinates.x > locRect.x && coordinates.x < locRect.x + locRect.width &&
+            coordinates.y > locRect.y && coordinates.y < locRect.y + locRect.height &&
+            locRect.width * locRect.height < smallestArea){
+            smallestArea = locRect.width * locRect.height;
+            locFound = d3.select(this).attr("id");
+        }
     });
+    return locFound;
+}
+// Called on a mouse click, determines the proper location and selects
+// it.
+function dispatch_location(){
+    var mousepos = {x: d3.event.pageX, y: d3.event.pageY };
+    var loc = pos_to_loc(mousepos);
+    if (loc == -1) return;
+    select_location(loc);
+}
+// Called when the mouse moves over the formula, updates the
+// highlighted location to be the one that best matches the mouse
+// position.
+function update_highlights(){
+    var mousepos = {x: d3.event.pageX, y: d3.event.pageY };
+    var loc = pos_to_loc(mousepos);
+    if (loc == -1) unhighlight_location(highlighted_loc);
+    else highlight_location(loc);
 }
 // Called when the mouse enters a location of error.
 function highlight_location(loc_number){
@@ -134,6 +174,7 @@ function unhighlight_location(loc_number){
 }
 // Called when the user clicks on a particular location.
 function select_location(loc_number){
+    if (selected_loc != -1) return;
     // Store that this was the selected loc for later.
     selected_loc = loc_number;
     // Select the selected formula box and have it slide over to the

@@ -247,6 +247,9 @@ function location_selected(data){
             if (d.rule == "simplify"){
                 return "and simplify to:";
             }
+	    if (d.rule == "taylor"){
+		return "and series expand to get:"
+	    }
             return "Apply the rule <br>\\("+ d.rule + "\\)<br> to get: ";
         });
     // For each step, print the resulting program.

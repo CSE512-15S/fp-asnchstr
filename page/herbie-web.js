@@ -16,6 +16,7 @@ selected_loc = -1;
 highlighted_loc = -1;
 ranges = -1;
 selected_calts = d3.set();
+next_link = 0;
 
 init_json_path = d3.select(".placeholder").attr("data-json");
 
@@ -24,6 +25,7 @@ d3.json(init_json_path, function(error, data){
     if (error) return console.warn(error);
     global_data = data;
     render_chosen_formula(data);
+    next_link = data.next_link;
 });
 
 // Renders the currently selected formula with it's locations and
@@ -208,7 +210,7 @@ function select_location(loc_number){
         .on('mouseout', null);
     // Load the response to the selection, and update the view when
     // it's done.
-    d3.json("quadratic-selected.json", function(error, data){
+    d3.json(next_link + "?location-idx=" + loc_number, function(error, data){
         if (error) return console.warn(error);
         location_selected(data);
     });

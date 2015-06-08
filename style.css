@@ -1,4 +1,8 @@
 body {
-    max-width: 300px;
+    max-width: 600px;
     margin: auto;
+}
+img {
+    width: auto;
+    height: auto;
 }

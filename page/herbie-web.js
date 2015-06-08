@@ -395,13 +395,18 @@ function children_selected(data){
     comboBox.append("img")
         .attr("class", "combo_graph graph")
         .attr("src", data.combo_graph);
+    comboBox.append("button")
+        .attr("name", "finish")
+        .attr("class", "finish_button")
+        .text("Good enough")
+        .on('click', function () { window.location.href = data.done_link; });
 
     // Create a box to hold all the candidates
     var candidatesBox = d3.select("body").append("div")
         .attr("class", "candidates_div phase3");
     candidatesBox.append("h3")
         .attr("class", "instr")
-        .text("Pick the next program to start from");
+        .text("Or, pick the next program to start from");
     // Create boxes for each candidate
     var candidateBoxes = candidatesBox.selectAll(".candidate_box")
         .data(data.candidates).enter()

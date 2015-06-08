@@ -31,8 +31,8 @@ available at [www.racket-lang.org](http://www.racket-lang.org).
 this page with a web browser to interact with the Herbie Interactive
 Exploration.
 
-Alternatively, you can navigate to [my personal
-server](174.61.187.14:8080/viz/) where the Herbie Interactive
+Alternatively, you can navigate to my [personal
+server](http://174.61.187.14:8080/viz/) where the Herbie Interactive
 Exploration will be (hopefully) running from June 8th, 2015 to June
 12th, 2015.
 

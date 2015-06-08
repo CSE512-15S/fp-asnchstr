@@ -67,8 +67,8 @@ function render_chosen_formula(data){
     sfbox.append("p")
 	.classed("axis_label", true)
 	.style("text-align", "center")
-	.append("$$b$$")
-	.text(data.axis_label);
+	.append("b")
+	.text("$$"+data.axis_label+"$$");
 
     // Create range indicators for each range in the data.
     draw.selectAll(".rangeIndicator")
@@ -93,9 +93,8 @@ function render_chosen_formula(data){
 	    .classed("repick", true)
 	    .text("Or,");
 	sfbox.append("button")
-	    .classed("repick", true)
 	    .attr("name", "repick_alt")
-	    .attr("class", "repick_button")
+	    .attr("class", "repick_button repick")
 	    .text("Pick another candidate")
 	    .on("click", repick);
     }

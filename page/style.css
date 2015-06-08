@@ -78,6 +78,7 @@ svg {
     height: auto;
     border: 5px solid green;
     margin: 0 auto;
+    text-align: center;
 }
 .combo_graph{
     margin: 10px;

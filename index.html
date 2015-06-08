@@ -1,9 +1,19 @@
-<h1 id="herbie-interactive-exploration">Herbie Interactive Exploration</h1>
-<p>Alex Sanchez-Stern asnchstr@uw.edu</p>
-<p><a href="images/select_children_screen.png">Overview</a></p>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+    <title>Herbie Interactive Exploration</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <h1 id="herbie-interactive-exploration">Herbie Interactive Exploration</h1>
+    <p>Alex Sanchez-Stern asnchstr@uw.edu</p>
+    <p><img src="images/select_children_screen.png">Overview</a></p>
 <p>Floating point rounding errors are notoriously difficult to detect and debug. By identifying the input regions for which error is high, and applying rewrites and taylor expanding at focused locations, the Herbie tool can automatically improve the accuracy of floating point expressions. But this process is complex for humans to understand a replicate. The Herbie Interactive Exploration allows users to get inside the inner workings of Herbie, and learn how it improves the accuracy of floating point programs, as well as how they might improve accuracy by hand.</p>
 <h1 id="installation">Installation</h1>
 <p>This project uses the Herbie tool as a submodule, so when you clone it you'll want to use <code>git clone --recursive http://github.com/CSE512-15S/fp-asnchstr</code>. If you'd rather clone it the normal way, or have already cloned it, just run <code>make deps</code> to install the submodule.</p>
 <p>To run the Herbie server and tool, you'll neet Racket, which is available at <a href="http://www.racket-lang.org">www.racket-lang.org</a>.</p>
 <p><code>make run</code> will run the server on localhost:3234/viz/. Navigate to this page with a web browser to interact with the Herbie Interactive Exploration.</p>
 <p>Alternatively, you can navigate to my <a href="http://174.61.187.14:8080/viz/">personal server</a> where the Herbie Interactive Exploration will be (hopefully) running from June 8th, 2015 to June 12th, 2015.</p>
+</body>
+</html>

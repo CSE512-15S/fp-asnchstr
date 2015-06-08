@@ -67,7 +67,7 @@ function render_chosen_formula(data){
     sfbox.append("p")
 	.classed("axis_label", true)
 	.style("text-align", "center")
-	.append("b")
+	.append("$$b$$")
 	.text(data.axis_label);
 
     // Create range indicators for each range in the data.

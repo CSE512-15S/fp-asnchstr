@@ -2,6 +2,14 @@ body {
     margin-left: 50px;
     margin-right: 50px;
     margin-top: 100px;
+    max-width: none;
+}
+svg {
+    display: inline; /* So that circles from mathjax aren't messed up.*/
+}
+
+.logo {
+    width: 125px;
 }
 
 .formula {
@@ -9,9 +17,11 @@ body {
 }
 .selectedFormulaBox {
     float: left;
+    text-align: center;
 }
 .instr {
     text-align: center;
+    clear: none;
 }
 .graph {
     width:100%;

@@ -17,6 +17,8 @@ highlighted_loc = -1;
 ranges = -1;
 selected_calts = d3.set();
 next_link = 0;
+repick_link = 0;
+candidate_data = 0;
 
 init_json_path = d3.select(".placeholder").attr("data-json");
 
@@ -51,7 +53,7 @@ function render_chosen_formula(data){
     var draw = sfbox
         .append("svg")
         .attr("width", graph_width+"px")
-        .attr("height", (graph_height+selection_height)+"px");
+        .attr("height", graph_height+"px");
 
     // The graph of error that sits under it.
     var graph = draw
@@ -60,6 +62,13 @@ function render_chosen_formula(data){
         .attr("xlink:href", data.error_graph)
         .attr("height", graph_height+"px")
         .attr("width", graph_width+"px");
+
+    
+    sfbox.append("p")
+	.classed("axis_label", true)
+	.style("text-align", "center")
+	.append("b")
+	.text(data.axis_label);
 
     // Create range indicators for each range in the data.
     draw.selectAll(".rangeIndicator")
@@ -77,6 +86,21 @@ function render_chosen_formula(data){
     // Save the ranges for use when rendering the calts.
     ranges = data.loc_ranges;
 
+    // If this isn't the first time around, let them pick a different
+    // alt.
+    if (repick_link != 0){
+	sfbox.append("p").classed("instr", true)
+	    .classed("repick", true)
+	    .text("Or,");
+	sfbox.append("button")
+	    .classed("repick", true)
+	    .attr("name", "repick_alt")
+	    .attr("class", "repick_button")
+	    .text("Pick another candidate")
+	    .on("click", repick);
+    }
+    
+
     // Add links to the math once it's finished rendering.
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
     MathJax.Hub.Queue(add_loc_links);
@@ -84,7 +108,8 @@ function render_chosen_formula(data){
 
 function add_loc_links(){
     // Place a box over the whole formula so that we can capture click events and route them properly.
-    var formulaRect = d3.select(".formula").node().getBoundingClientRect();
+    var formulaRect = d3.select(".formula")
+	.node().getBoundingClientRect();
     var clickdiv = d3.select(".selectedFormulaBox")
         .append("div")
         .attr("class", "clickdiv")
@@ -107,7 +132,11 @@ function pos_to_loc(coordinates){
     var smallestArea = Infinity;
     var locFound = -1;
     locations.each(function (d){
-        locRect = d3.select(this).node().getBoundingClientRect();
+        locRect = d3.select(this)
+	// Doing this span thing gets us the inner span which actually has
+	// the most accurate bounding box.
+	    .select("span").select("span").select("span").select("span")
+	    .node().getBoundingClientRect();
         if (coordinates.x > locRect.x && coordinates.x < locRect.x + locRect.width &&
             coordinates.y > locRect.y && coordinates.y < locRect.y + locRect.height &&
             locRect.width * locRect.height < smallestArea){
@@ -187,6 +216,11 @@ function select_location(loc_number){
     sfbox.transition()
         .duration(1000)
         .styleTween("margin-left", function(){ return d3.interpolate(unselected_formula_margin, "0%"); });
+    d3.selectAll(".repick")
+	.transition()
+	.duration(100)
+	.attr("opacity", 0)
+	.remove();
 
     // Fade out the ranges that are not associated with the selected
     // location.
@@ -212,6 +246,7 @@ function select_location(loc_number){
     // it's done.
     d3.json(next_link + "?location-idx=" + loc_number, function(error, data){
         if (error) return console.warn(error);
+	next_link = data.next_link;
         location_selected(data);
     });
 }
@@ -248,13 +283,15 @@ function location_selected(data){
                 return "and simplify to:";
             }
 	    if (d.rule == "taylor"){
-		return "and series expand to get:"
+		return "Series expand to get:"
 	    }
             return "Apply the rule <br>\\("+ d.rule + "\\)<br> to get: ";
-        });
+        })
+	.style("font-size", 11);
     // For each step, print the resulting program.
     stepboxes.append("p").classed("calt_formula", true)
-        .text(function(d,i) { return "$$" + d.prog + "$$"; });
+        .text(function(d,i) { return "$$" + d.prog + "$$"; })
+	.style("font-size", 11);
 
     // Draw the graph svg
     var draws = caltboxes
@@ -285,7 +322,10 @@ function location_selected(data){
     var checkboxes = caltboxes.append("input")
         .attr("type", "checkbox")
         .attr("class", "selectCalt")
-        .attr("id", function (d, i) { return d.id; })
+	.data(data.calts)
+        .attr("id", function (d, i) {
+	    return d.id;
+	});
 
     // Give the checkboxes their behavior
     checkboxes.each(function (d, i) {
@@ -325,13 +365,28 @@ function select_children(){
         .style("opacity", 0)
         .remove();
     // Load the server response for phase 3
-    d3.json("quadratic-candidates.json",
+    var response_params = "";
+    selected_calts.forEach(function (idx) { response_params += "chosen-idx=" + idx + "&"; });
+    d3.json(next_link + "?" + response_params,
             function(error, data){
                 if (error) return console.warn(error);
+		next_link = data.next_link;
                 children_selected(data);
             });
 }
+
+function repick(){
+    next_link = repick_link;
+    d3.select(".selectedFormulaBox")
+	.transition()
+	.duration(100)
+	.style("opacity", 0)
+	.remove();
+    children_selected(candidate_data);
+}
+
 function children_selected(data){
+    candidate_data = data;
     // Render the current combination box.
     var comboBox = d3.select("body").append("div")
         .attr("class", "combo_box phase3");
@@ -387,11 +442,14 @@ function children_selected(data){
     // Typeset the formulas we've added.
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 }
+
 function select_next(cand_id){
     // Fade out the elements, and when they're done fading out load
     // the json. This may cause unneccessary delays because the json
     // itself takes some time, which could be during the fade out, but
     // we'll cross that bridge when we come to it.
+
+    var half_done = false;
     d3.selectAll(".phase3")
         .transition()
         .duration(1000)
@@ -400,11 +458,17 @@ function select_next(cand_id){
         .each("end", function (d, i) {
             // Only invoke the function once.
             if (i == 0){
-                d3.json("initial-quadratic.json", function(error, data){
-                    if (error) return console.warn(error);
-                    global_data = data;
-                    render_chosen_formula(data);
-                });
+		// Super not thread safe, oh well.
+		if (half_done) render_chosen_formula(global_data);
+		else half_done = true;
             }
         });
+    d3.json(next_link + "?cand-idx=" + cand_id, function(error, data){
+        if (error) return console.warn(error);
+        global_data = data;
+	next_link = data.next_link;
+	repick_link = data.repick_link;
+	if (half_done) render_chosen_formula(data);
+	else half_done = true;
+    });
 }

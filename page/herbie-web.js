@@ -46,8 +46,8 @@ function render_chosen_formula(data){
 
     // Instructions
     sfbox.append("h3").classed("instr", true)
-        .text("Hover over a circled node to see what input ranges have high error due\
-to that operation. Click to improve at that operation.");
+        .text("Hover over a circled node to see which input ranges have high error due\
+ to that operation. Click to try to rewrite that operation.");
     
     // The texified formula
     sfbox.append("p").classed("formula", true)

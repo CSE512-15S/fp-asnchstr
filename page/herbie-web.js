@@ -46,7 +46,8 @@ function render_chosen_formula(data){
 
     // Instructions
     sfbox.append("h3").classed("instr", true)
-        .text("Choose a location");
+        .text("Hover over a circled node to see what input ranges have high error due\
+to that operation. Click to improve at that operation.");
     
     // The texified formula
     sfbox.append("p").classed("formula", true)
@@ -65,7 +66,6 @@ function render_chosen_formula(data){
         .attr("xlink:href", data.error_graph)
         .attr("height", graph_height+"px")
         .attr("width", graph_width+"px");
-
     
     sfbox.append("p")
 	.classed("axis_label", true)

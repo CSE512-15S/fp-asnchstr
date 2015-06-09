@@ -24,7 +24,10 @@ init_json_path = d3.select(".placeholder").attr("data-json");
 
 // Load the initial json and start rendering when it finishes loading.
 d3.json(init_json_path, function(error, data){
-    if (error) return console.warn(error);
+    if (error){
+        alert("You broke Herbie! Sorry about that. The project is still under development, and we're working out the kinks. Try a different formula.");
+        return;
+    }
     global_data = data;
     render_chosen_formula(data);
     next_link = data.next_link;
@@ -244,7 +247,10 @@ function select_location(loc_number){
     // Load the response to the selection, and update the view when
     // it's done.
     d3.json(next_link + "?location-idx=" + loc_number, function(error, data){
-        if (error) return console.warn(error);
+        if (error){
+            alert("You broke Herbie! Sorry about that. The project is still under development, and we're working out the kinks. Try a different formula.");
+            return;
+        }
 	next_link = data.next_link;
         location_selected(data);
     });
@@ -368,7 +374,10 @@ function select_children(){
     selected_calts.forEach(function (idx) { response_params += "chosen-idx=" + idx + "&"; });
     d3.json(next_link + "?" + response_params,
             function(error, data){
-                if (error) return console.warn(error);
+                if (error){
+                    alert("You broke Herbie! Sorry about that. The project is still under development, and we're working out the kinks. Try a different formula.");
+                    return;
+                }
 		next_link = data.next_link;
                 children_selected(data);
             });
@@ -468,7 +477,10 @@ function select_next(cand_id){
             }
         });
     d3.json(next_link + "?cand-idx=" + cand_id, function(error, data){
-        if (error) return console.warn(error);
+        if (error){
+            alert("You broke Herbie! Sorry about that. The project is still under development, and we're working out the kinks. Try a different formula.");
+            return;
+        }
         global_data = data;
 	next_link = data.next_link;
 	repick_link = data.repick_link;

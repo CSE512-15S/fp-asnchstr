@@ -137,7 +137,6 @@ function pos_to_loc(coordinates){
         locRect = d3.select(this)
 	// Doing this span thing gets us the inner span which actually has
 	// the most accurate bounding box.
-	    .select("span").select("span").select("span").select("span")
 	    .node().getBoundingClientRect();
         if (coordinates.x > locRect.x && coordinates.x < locRect.x + locRect.width &&
             coordinates.y > locRect.y && coordinates.y < locRect.y + locRect.height &&
